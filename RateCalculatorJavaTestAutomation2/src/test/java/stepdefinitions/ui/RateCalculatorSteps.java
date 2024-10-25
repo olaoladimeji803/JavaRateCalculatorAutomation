@@ -5,24 +5,29 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import utilities.ConfigUtil;
 import utilities.WebDriverHelpers;
 import pages.RateCalculatorPage;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class RateCalculatorSteps {
 
     private WebDriverHelpers webDriverHelpers;
     private RateCalculatorPage rateCalculatorPage;
-    public RateCalculatorSteps(WebDriverHelpers _webDriverHelpers, RateCalculatorPage _rateCalculatorPage)
+    private ConfigUtil configUtil;
+    public RateCalculatorSteps(WebDriverHelpers _webDriverHelpers, RateCalculatorPage _rateCalculatorPage, ConfigUtil _configUtil)
     {
         this.webDriverHelpers = _webDriverHelpers;
         this.rateCalculatorPage = _rateCalculatorPage;
+        this.configUtil = _configUtil;
     }
 
     @Given("that a user loads an application under test")
     public void thatAUserLoadsAnApplicationUnderTest() {
-        webDriverHelpers.driver.get("https://main--exchange-rate-calculator-2024.netlify.app/");
+            webDriverHelpers.driver.get(configUtil.loadEnvProfileData("baseUrl"));
+
         // Thread.sleep(Duration.ofMinutes(1));
         // webDriverHelpers.driver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
     }

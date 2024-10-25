@@ -1,3 +1,4 @@
+@web
 Feature: RateCalculator
   @web
   Scenario: 01_Verify that a user can convert pounds to naira
